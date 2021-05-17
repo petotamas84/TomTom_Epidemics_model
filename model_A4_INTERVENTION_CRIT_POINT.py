@@ -81,7 +81,7 @@ rate_h = float(rate_h)
 
 #HOSP_TIME = input("Enter avarge time of hospitalisation after : ")
 #HOSP_TIME = int(HOSP_TIME)
-HOSP_TIME = 7
+HOSP_TIME = 4
 
 rate_d = input("Enter mortality: ")
 rate_d = float(rate_d) #mortality
@@ -306,7 +306,7 @@ while(inf < pop and n_inf >= 2):
         
     sum_hosp = sum_hosp + n_hosp
     
-    s = int((REC_TIME - HOSP_TIME)/2)
+    s = int((REC_TIME - HOSP_TIME)/ 4)
     if (len(n_hosp_t) <= s):
         
         act_hosp = act_hosp + n_hosp/rc
@@ -470,13 +470,24 @@ n_rec_fit = Gauss(dar_t, params[0], params[1], params[2], params[3])
 filename_act_inf_fit = "Mode_A4_Act_Inf_fit" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
 f_act_inf_fit = open(filename_act_inf_fit, "w+")
 
-filename_act_ill_fit = "Mode_A4_Act_Inf_fit" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
-f_act_ill_fit = open(filename_act_inf_fit, "w+")
+filename_n_inf_fit = "Mode_A4_Daily_Inf_fit" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
+f_n_inf_fit = open(filename_n_inf_fit, "w+")
+
+for i in range(0, len(da_t)):
+    
+    f_act_inf_fit.write("%d\n"  % (int(act_inf_fit[i])))
+    f_n_inf_fit.write("%d\n"  % (int(n_inf_fit[i])))
+    
+filename_act_ill_fit = "Mode_A4_Act_Ill_fit" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
+f_act_ill_fit = open(filename_act_ill_fit, "w+")
+
+filename_n_ill_fit = "Mode_A4_Daily_Ill_fit" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
+f_n_ill_fit = open(filename_n_ill_fit, "w+")
 
 for i in range(0, len(dai_t)):
     
-    f_act_inf_fit.write("%d\n"  % (int(act_inf_fit[i])))
-    f_act_ill_fit.write("%d\n"  % (int(act_ill_fit[i]))) 
+    f_act_ill_fit.write("%d\n"  % (int(act_ill_fit[i])))
+    f_n_ill_fit.write("%d\n"  % (int(n_ill_fit[i]))) 
 
 filename_daily_hosp_fit = "Mode_A4_Daily_Hosp_fit_" + str(ri) + "_" + str(rc) + "_" + str(rate_i) + "_" + str(rate_d) + ".txt"
 f_daily_hosp_fit = open(filename_daily_hosp_fit, "w+")
